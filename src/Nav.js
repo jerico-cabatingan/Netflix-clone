@@ -5,7 +5,8 @@ import "./Nav.css";
 
 function Nav() {
   const [show, handleShow] = useState(false);
-
+  
+  // Used to apply nav__black class if the user scrolls
   const transitionNavBar = () => {
     window.scrollY > 100 ? handleShow(true): handleShow(false);
   };
