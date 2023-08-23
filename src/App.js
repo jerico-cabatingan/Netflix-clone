@@ -7,7 +7,9 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import LoginScreen from './screens/LoginScreen';
 
+const user = null
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,9 +20,14 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const user = null;
+
   return (
     <div className="app">
-      <RouterProvider router={router} />
+      {!user ? 
+        <LoginScreen/> :
+        <RouterProvider router={router} />
+      }
     </div>
   );
 }
