@@ -1,15 +1,16 @@
-import React from 'react';
-import HomeScreen from './screens/HomeScreen';
-import './App.css';
+import React, { useEffect } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from './firebase';
 import LoginScreen from './screens/LoginScreen';
+import HomeScreen from './screens/HomeScreen';
+import './App.css';
 
-const user = null
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,20 @@ const router = createBrowserRouter(
 
 function App() {
   const user = null;
+
+  useEffect(() => {
+    return onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        console.log(user)
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
+  }, [])
 
   return (
     <div className="app">
